@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ClientThread
+comment1.params=server\ socket
+comment1.target=ClientThread(ChatServer,\ java.net.Socket)
+comment2.params=
+comment2.target=java.io.PrintWriter\ getWriter()
+comment3.params=
+comment3.target=void\ run()
+numComments=4
