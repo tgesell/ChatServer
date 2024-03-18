@@ -62,12 +62,16 @@ public class ChatServer {
                 //A thread just for this client-server communication will be created and communicate on this socket.
                 /************** Complete this Section ************************************************************/
                 //1)  Create a ClientThread using this Server object, and the socket  (ClientThread is a Runnable)
+                ClientThread client = new ClientThread(this, socket);
                 //2)  Create a Java Thread with the ClientThread object
+                Thread thread = new Thread(client);
                 //3)  start the Thread
+                thread.start();
                 //4) add the client Thread to the clients List
+                clients.add(client);
                 /**************************************************************************************************/
             } catch (IOException ex){
-                System.out.println("Accept failed on : "+serverPort);
+                System.out.println("Accept failed on : " + serverPort);
             }
         }
     }

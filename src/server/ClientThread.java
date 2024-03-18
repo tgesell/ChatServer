@@ -43,13 +43,20 @@ public class ClientThread implements Runnable {
 
             /* Complete this Section************************************************************************* */
             // if the socket has another line of input
+            if (in.hasNextLine())
+            {
                 //get the line of data
+                String input = in.nextLine();
                     // NOTE: if you want to verify that server can read input, uncomment the next line and check server file console.
-                    // System.out.println(input);
+                    System.out.println(input);
                 //Now, go through all the ClientThreads the server is keeping track of,
+                for (ClientThread thatClient: server.getClients()) {
                     //get the PrintWriter used to write to each client's socket
+                    PrintWriter thatClientOut = thatClient.getWriter();
                     //and write to those clients using the PrintWriter (as long as it isn't null)
-                    if(thatClientOut != null){
+                    if (thatClientOut != null)
+                    {
+                        thatClientOut.write(input + "\r\n");
                         thatClientOut.flush();
                     }//end if thatClientOut != null
                 }//end for

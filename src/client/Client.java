@@ -42,16 +42,21 @@ public class Client {
 
             /*Complete this section******************************************************************************************************/
             //1)  Create a ServerThread object.  Send it the socket, and the userName
+            ServerThread serverThread = new ServerThread(socket, userName );
             //2)  Create a Java Thread object.  Send it the ServerThread object (which implements Runnable) as a parameter
+            Thread serverAccessThread = new Thread(serverThread);
             //3)  start the Java Thread object.
-
-
-
-
+            serverAccessThread.start();
 
             //4)  loop as long as the Java Thread object isAlive()
-                    //5)  whenever scan (the Scanner object) has an additional line of input, add that message to the ServerThread object.
-
+            while (serverAccessThread.isAlive()) {
+                //5)  whenever scan (the Scanner object) has an additional line of input, add that message to the ServerThread object.
+                if (scan.hasNextLine()) {
+                    String msg = scan.nextLine();
+                    serverThread.addNextMessage(msg);
+                    System.out.println(msg);
+                }
+            }
             // NOTE: scan.hasNextLine() awaits input (in other words blocks this thread's process until it has another line of input).
             //       If instead of Scanner, you use Buffered Reader or something else that does not await input,
             //       I recommend waiting a short time like following:
@@ -65,6 +70,5 @@ public class Client {
         }catch(InterruptedException ex){
             System.out.println("Interrupted");
         }
-
     }
 }
