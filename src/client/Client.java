@@ -54,7 +54,6 @@ public class Client {
                 if (scan.hasNextLine()) {
                     String msg = scan.nextLine();
                     serverThread.addNextMessage(msg);
-                    System.out.println(msg);
                 }
             }
             // NOTE: scan.hasNextLine() awaits input (in other words blocks this thread's process until it has another line of input).
